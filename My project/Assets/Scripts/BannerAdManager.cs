@@ -23,6 +23,7 @@ public class BannerAdManager : MonoBehaviour, IUnityAdsInitializationListener
     {
         while (true)
         {
+            Advertisement.Banner.SetPosition(BannerPosition.TOP_CENTER);
             // Carrega o banner explicitamente
             Advertisement.Banner.Load(bannerPlacement);
             Advertisement.Banner.Show(bannerPlacement);
