@@ -65,4 +65,12 @@ public class EnemyMovement : MonoBehaviour // Classe EnemyMovement: Controla o m
     {
         moveSpeed = baseSpeed; // Restaura a velocidade original.
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("endPoint"))
+        {
+            LevelManager.instance.GameOver();
+        }
+    }
 }

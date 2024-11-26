@@ -12,6 +12,8 @@ public class RewardedAd : MonoBehaviour, IUnityAdsInitializationListener
 
     public Text rewardText;
     private int playerMoney = 0;
+    public delegate void RewardDelegate(int amount);
+    public static event RewardDelegate OnRewardEarned;
 
     void Start()
     {
@@ -26,6 +28,15 @@ public class RewardedAd : MonoBehaviour, IUnityAdsInitializationListener
         Advertisement.Load(rewardedPlacement);
     }
 
+    public void ShowRewardedAd()
+    {
+        // Não usamos IsReady aqui, carregamos e exibimos diretamente
+        ShowOptions options = new ShowOptions();
+       // options.resultCallback = HandleRewardedAdResult;
+
+        // Exibe o anúncio
+        Advertisement.Show(rewardedPlacement, options);
+    }
 
     private void HandleRewardedAdResult(ShowResult result)
     {
@@ -51,6 +62,7 @@ public class RewardedAd : MonoBehaviour, IUnityAdsInitializationListener
         playerMoney += rewardAmount;
         rewardText.text = "Você ganhou " + rewardAmount + " moedas!";
         Debug.Log("Jogador recebeu " + rewardAmount + " moedas!");
+        OnRewardEarned?.Invoke(rewardAmount);
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)

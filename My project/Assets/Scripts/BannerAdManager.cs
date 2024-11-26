@@ -8,7 +8,7 @@ public class BannerAdManager : MonoBehaviour, IUnityAdsInitializationListener
     private string bannerPlacement = "Banner_Android";
     private string gameId = "5729650";
     private bool testMode = true;
-
+   // private bool isAdShowing = false;
     void Start()
     {
         Advertisement.Initialize(gameId, testMode, this);
@@ -38,4 +38,9 @@ public class BannerAdManager : MonoBehaviour, IUnityAdsInitializationListener
     {
         //   throw new System.NotImplementedException();
     }
+    // Método para bloquear o banner quando um anúncio for exibido
+   // public void SetAdShowing(bool state)
+    //{
+      //  isAdShowing = state;
+   // }
 }

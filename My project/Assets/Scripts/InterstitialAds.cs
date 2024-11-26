@@ -8,6 +8,8 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsInitializationListener
     private string interstitialPlacement = "Interstitial_Android";
     private string gameId = "5729650";
     private bool testMode = true;
+    private bool isAdShowing = false;
+    private int interstitialCounter = 0;
 
     void Start()
     {
@@ -22,8 +24,15 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsInitializationListener
 
     public void ShowInterstitialAd()
     {
-        //Advertisement.Show(interstitialPlacement, new ShowOptions { resultCallback = HandleAdResult });
-        Advertisement.Show(interstitialPlacement, new ShowOptions());
+        if (!isAdShowing)
+        {
+            isAdShowing = true;
+            Advertisement.Show(interstitialPlacement, new ShowOptions());
+            // ShowOptions options = new ShowOptions();
+            // options.resultCallback = HandleAdResult; 
+            // Advertisement.Show(interstitialPlacement, options);
+        }
+     
     }
 
     // Método para lidar com os resultados do intersticial

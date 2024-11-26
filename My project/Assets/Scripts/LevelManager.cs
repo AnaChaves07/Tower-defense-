@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour // Classe LevelManager: Gerencia informações relacionadas ao nível, como pontos de início e caminho dos inimigos.
 
 {
+    public RewardedAd rewardedAd;
     [SerializeField] private GameObject gameOverScreen;
 
     private void Awake()
@@ -24,6 +25,8 @@ public class LevelManager : MonoBehaviour // Classe LevelManager: Gerencia infor
     {
         Time.timeScale = 0f; // Pausa o jogo
         gameOverScreen.SetActive(true); // Exibe a tela de Game Over
+        Debug.Log("Game Over! Assistir ao anúncio para continuar?");
+        rewardedAd.ShowRewardedAd();
     }
 
     public void RestartGame()
@@ -42,7 +45,7 @@ public class LevelManager : MonoBehaviour // Classe LevelManager: Gerencia infor
    
     private void Start()
     {
-        currency = 200; // inicia com 100 moedas
+        currency = 200; // inicia com 200 moedas
     }
     public void IncreaseCurrency(int amount) // Metodo que aumenta as Moedinhas
     {
@@ -57,7 +60,7 @@ public class LevelManager : MonoBehaviour // Classe LevelManager: Gerencia infor
         }
         else
         {
-            Debug.Log("Pobre você é"); // mostra no console a linda mensagem escrita 
+            Debug.Log("Você não tem moedas suficientes"); // mostra no console a linda mensagem escrita 
             return false;    //retorna falso    
         }
     }
